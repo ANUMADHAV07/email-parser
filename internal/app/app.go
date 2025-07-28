@@ -1,16 +1,14 @@
 package app
 
-import (
-	"fmt"
-	"net/http"
-)
+import "github.com/ANUMADHAV07/email-parser.git/internal/handlers"
 
-type Application struct{}
-
-func NewApplication() *Application {
-	return &Application{}
+type Application struct {
+	Handler *handlers.Handler
 }
 
-func (app *Application) HealthCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Status is available")
+func NewApplication() *Application {
+	handler := handlers.NewHandler()
+	return &Application{
+		Handler: handler,
+	}
 }
